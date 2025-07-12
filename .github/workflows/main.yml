@@ -12,13 +12,8 @@ jobs:
       - name: Récupérer le code
         uses: actions/checkout@v2
 
-      - name: Installer Docker
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y docker.io
-
-      - name: Build image Docker
-        run: docker build -t mon-app-devops .
-
-      - name: Lister les images Docker
-        run: docker images
+      - name: Build l’image Docker
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          tags: mon-app-devops:latest
